@@ -1,5 +1,6 @@
 //@ts-nocheck
 class Ray {
+    points = [];
     pos = createVector(0, 0);
     constructor(x1, y1) {
         this.lookingPos = createVector(x1, y1);
@@ -10,6 +11,7 @@ class Ray {
     }
 
     draw(boundrys) {
+        this.points = [];
         let possibilities = [];
         boundrys.forEach(boundry => {
             const pos = this.cast(boundry);
@@ -36,6 +38,8 @@ class Ray {
             line(this.pos.x, this.pos.y, x, y);
             fill(255);
             circle(x, y, 10);
+
+            this.points.push([x, y]); //To make polygon later on
         }
 
         if (possibilities.length) {

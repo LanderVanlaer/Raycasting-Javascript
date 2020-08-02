@@ -3,6 +3,9 @@
 let walls = [];
 let particles = [];
 
+Array.prototype.change = (i, j) => [this[i], this[j]] = [this[j], this[i]]; //For sorting the points
+
+
 function setup() {
     createCanvas(1000, 600);
     walls.push(
@@ -38,13 +41,13 @@ function setup() {
 function draw() {
     background(89);
     stroke(255);
-    walls.forEach(e => e.draw());
     particles.forEach(e => {
         e.pos.x = mouseX;
         e.pos.y = mouseY;
         e.update();
         e.draw(walls);
     });
+    walls.forEach(e => e.draw());
 }
 
 function calcIntersection(boundry1, boundry2) {
